@@ -1,5 +1,15 @@
-export type UserId = string;
-export type OrderId = string;
+type Brand<T, Name extends string> = T & { readonly __brand: Name };
+
+export type UserId = Brand<string, "UserId">;
+export type OrderId = Brand<string, "OrderId">;
+
+export function userId(value: string): UserId {
+  return value as UserId;
+}
+
+export function orderId(value: string): OrderId {
+  return value as OrderId;
+}
 
 export interface Order {
   id: OrderId;
@@ -8,17 +18,20 @@ export interface Order {
 }
 
 const orders: Order[] = [
-  { id: "order-100", userId: "user-42", totalYen: 4800 },
-  { id: "user-42", userId: "user-7", totalYen: 999999 }
+  { id: orderId("order-100"), userId: userId("user-42"), totalYen: 4800 },
+  { id: orderId("user-42"), userId: userId("user-7"), totalYen: 999999 }
 ];
 
 export function findOrderById(id: OrderId): Order | undefined {
   return orders.find((order) => order.id === id);
 }
 
+export function findOrderByUserId(id: UserId): Order | undefined {
+  return orders.find((order) => order.userId === id);
+}
+
 export function getCurrentUsersOrder(currentUserId: UserId): Order | undefined {
-  // BUG: UserId と OrderId は意味が異なるが、どちらも string なので受け渡せてしまう。
-  return findOrderById(currentUserId);
+  return findOrderByUserId(currentUserId);
 }
 
 export function formatOrderResponse(order: Order | undefined): string {

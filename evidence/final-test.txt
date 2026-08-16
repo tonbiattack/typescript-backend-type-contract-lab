@@ -1,0 +1,11 @@
+$ vitest run
+
+ RUN  v2.1.8 /home/ubuntu/typescript-backend-type-contract-lab
+
+ ✓ test/order-service.test.ts (2 tests) 3ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  09:35:23
+   Duration  250ms (transform 40ms, setup 0ms, collect 34ms, tests 3ms, environment 0ms, prepare 63ms)
+
