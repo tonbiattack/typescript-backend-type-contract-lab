@@ -1,0 +1,30 @@
+
+ RUN  v2.1.8 /home/ubuntu/typescript-backend-type-contract-lab
+
+ ❯ test/order-service.test.ts (2 tests | 1 failed | 1 skipped) 10ms
+   × GET /me/order の最小再現 > returns the current user's order, not an order whose id merely equals the user id 8ms
+     → expected '200 user-42 999999' to be '404 Order Not Found' // Object.is equality
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/order-service.test.ts > GET /me/order の最小再現 > returns the current user's order, not an order whose id merely equals the user id
+AssertionError: expected '200 user-42 999999' to be '404 Order Not Found' // Object.is equality
+
+Expected: "404 Order Not Found"
+Received: "200 user-42 999999"
+
+ ❯ test/order-service.test.ts:12:22
+     10| 
+     11|     // user-42 は存在するユーザーだが、user-42 という注文IDの注文では…
+     12|     expect(response).toBe("404 Order Not Found");
+       |                      ^
+     13|   });
+     14| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 skipped (2)
+   Start at  09:34:34
+   Duration  276ms (transform 41ms, setup 0ms, collect 36ms, tests 10ms, environment 0ms, prepare 61ms)
+
